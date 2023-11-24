@@ -31,7 +31,7 @@ if (localItem) {
 console.log(window.location.href)
 console.log(sepet.length)
 
-if (window.location.href == 'https://gokhanbyk.github.io/lastSepet/') {
+if (window.location.href == 'https://gokhanbyk.github.io/lastSepet/' || window.location.href == "https://gokhanbyk.github.io/lastSepet/index.html") {
     const row = document.querySelector('.row')
     const input = document.getElementById('input')
 
