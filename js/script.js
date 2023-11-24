@@ -60,11 +60,32 @@ if (window.location.href == 'http://127.0.0.1:5500/index.html') {
         btn.textContent = 'Sepete Ekle'
 
         btn.addEventListener('click', () => {
-            sepet.push(urun)
+
+            console.log(sepet.length)
+
+            let found = false
+
+            if (sepet.length == 0) {
+                sepet.push(urun)
+
+                found = true
+            } else {
+                sepet.forEach(sepetUrunu => {
+                    // console.log(sepetUrunu.isim == urun.isim)
+                    if (sepetUrunu.isim == urun.isim) {
+                        sepetUrunu.quantity++
+                        found = true
+                    }
+
+                })
+            }
+
+            if (!found) {
+                sepet.push(urun)
+            }
 
             localStorage.setItem('sepet', JSON.stringify(sepet))
             span.textContent = sepet.length
-
         })
 
         cardBody.append(baslik)
@@ -111,7 +132,8 @@ if (window.location.href == 'http://127.0.0.1:5500/index.html') {
             baslik.textContent = urun.isim
 
             const price = document.createElement('p')
-            price.textContent = urun.fiyat + '$'
+            let urununFiyati = urun.fiyat * urun.quantity
+            price.textContent = urununFiyati + '$'
             price.style.fontWeight = 'bold'
 
             const kacTane = document.createElement('div')
